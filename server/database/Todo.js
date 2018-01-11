@@ -2,8 +2,8 @@ const mongoose = require('./mongoose');
 const User = require('./User');
 
 const schema = mongoose.Schema({
-  name: String,
-  done: Boolean,
+  name: { type: String, required: true },
+  done: { type: Boolean, default: false },
   completedAt: Date,
   assignedTo: User.schema,
 });
