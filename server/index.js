@@ -21,12 +21,13 @@ app.use(require('compression')());
 // The GraphQL endpoint
 app.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
-  tracing: true,
-  cacheControl: true,
 }));
 
 // GraphiQL, a visual editor for queries
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+// serve up the static app
+app.use('/app', express.static(path.join(__dirname, '../public')))
 
 // Start the server
 app.listen(process.env.PORT, () => {

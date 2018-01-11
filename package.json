@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./server/index.js",
-    "dev": "node dev.js",
+    "start:watch": "nodemon ./server/index.js",
+    "dev": "./scripts/dev",
+    "build:watch": "parcel watch ./app/index.html -d ./public",
     "build": "parcel build ./app/index.html -d ./public"
   },
   "dependencies": {
@@ -20,5 +22,9 @@
     "graphql": "^0.12.3",
     "graphql-tools": "^2.18.0",
     "parcel-bundler": "^1.4.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.14.11"
   }
 }
