@@ -1,5 +1,6 @@
 module.exports = {
   Date(root) {
-    return root.toISOString()
+    const date = new Date(root);
+    return date.toISOString()
   }
 };

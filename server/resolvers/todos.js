@@ -1,9 +1,12 @@
 const Todo = require('../database/Todo');
+const User = require('../database/User');
 
 module.exports = {
   getAll(root, args) {
-    if (args.done) {
-      return Todo.find({done: true}).exec();
+    if ('done' in args) {
+      return Todo.find({
+        done: !!args.done,
+      }).exec();
     }
     return Todo.find({}).exec();
   },
@@ -14,12 +17,22 @@ module.exports = {
     });
     return todo.save();
   },
-  completeTodo(root, args) {
-    return Todo.findById(args.id).exec()
-      .then((todo) => {
-        todo.done = true;
-        todo.completedAt = new Date();
-        return todo.save();
-      });
+  async completeTodo(root, args) {
+    const todo = await Todo.findById(args.id).exec();
+
+    todo.done = true;
+    todo.completedAt = new Date();
+
+    return todo.save();
+  },
+  async assignUserToTodo(root, args) {
+    const [user, todo] = await Promise.all([
+      User.findById(args.userId).exec(),
+      Todo.findById(args.todoId).exec(),
+    ]);
+
+    todo.assignedTo = user;
+
+    return todo.save();
   }
 }

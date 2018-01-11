@@ -1,10 +1,17 @@
+const users = require('./users');
+const todos = require('./todos');
+const scalars = require('./scalars');
+
 module.exports = {
   Query: {
-    todos: require('./todos').getAll,
+    todos: todos.getAll,
+    users: users.getAll,
   },
   Mutation: {
-    addTodo: require('./todos').addTodo,
-    completeTodo: require('./todos').completeTodo,
+    addTodo: todos.addTodo,
+    completeTodo: todos.completeTodo,
+    assignUserToTodo: todos.assignUserToTodo,
+    addUser: users.addUser,
   },
-  Date: require('./scalars').Date,
+  Date: scalars.Date,
 };
