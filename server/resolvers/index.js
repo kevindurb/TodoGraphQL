@@ -1,5 +1,5 @@
 module.exports = {
   Query: {
-    books: require('./books'),
+    todos: require('./todos'),
   },
 };
