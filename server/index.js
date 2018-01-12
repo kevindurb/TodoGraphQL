@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config({
   path: path.join(__dirname, '../.env'),
 });
@@ -7,9 +8,11 @@ const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 
+const typeDefs = fs.readFileSync(path.join(__dirname, './typeDefs/index.graphql'), 'utf8');
+
 // Put together a schema
 const schema = makeExecutableSchema({
-  typeDefs: require('./typeDefs'),
+  typeDefs,
   resolvers: require('./resolvers'),
 });
 
