@@ -10,6 +10,9 @@ module.exports = {
     }
     return Todo.find({}).exec();
   },
+  getById(root, args) {
+    return Todo.findById(args.id).exec();
+  },
   addTodo(root, args) {
     const todo = new Todo({
       name: args.name,

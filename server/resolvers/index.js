@@ -6,6 +6,7 @@ module.exports = {
   Query: {
     todos: todos.getAll,
     users: users.getAll,
+    todoById: todos.getById,
   },
   Mutation: {
     addTodo: todos.addTodo,

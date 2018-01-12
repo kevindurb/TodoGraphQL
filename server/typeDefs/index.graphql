@@ -5,6 +5,8 @@ type Query {
     done: Boolean
   ): [Todo]
 
+  todoById(id: ID!): Todo
+
   # get all users
   users: [User]
 }
